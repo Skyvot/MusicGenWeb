@@ -1,0 +1,120 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+	<head>
+        <title>Personal Page - ZyPop Web Templates</title>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+        <!-- Main CSS -->
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+        <!--Select CSS -->
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style2.css' %}" />
+        <script type="text/javascript" src="{% static 'js/modernizr.custom.79639.js' %}"></script>
+        <noscript><link rel="stylesheet" type="text/css" href="{% static 'js/modernizr.custom.79639.js' %}" /></noscript>
+
+    </head>
+  
+    <body>
+        
+        <div class="wrapper">
+            <div class="container">
+                <!-- Header -->
+                <header>
+                    <h1>MusicGen</h1>
+                    <h2>Powerful Music Generating System</h2>
+                </header>
+
+
+                <!-- Main content area -->
+                <main>
+                    <p>Welcome to MusicGen, a free powerful Music Generating System. You can download Music pieces generated with LSTM model from this website.</p>
+
+                    <p>We have music of a variety of styles here, And we would keep optimizing our model.</p>
+
+
+
+                    <form>
+                    <!-- ok -->
+
+                                <div id="dd" class="wrapper-dropdown-3" tabindex="1">
+                                    <span id = "ddspan">Mood</span>
+                                    <ul class="dropdown">
+                                        <li><a href="#">Happy</a></li>
+                                        <li><a href="#">Sorrowful</a></li>
+                                        <li><a href="#">Grief</a></li>
+                                    </ul>
+                                </div>
+
+                    <!-- jQuery if needed -->
+                    <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+                    <script type="text/javascript">
+
+                        function DropDown(el) {
+                            this.dd = el;
+                            this.placeholder = this.dd.children('span');
+                            this.opts = this.dd.find('ul.dropdown > li');
+                            this.val = '';
+                            this.index = -1;
+                            this.initEvents();
+                        }
+                        DropDown.prototype = {
+                            initEvents : function() {
+                                var obj = this;
+
+                                obj.dd.on('click', function(event){
+                                    $(this).toggleClass('active');
+                                    return false;
+                                });
+
+                                obj.opts.on('click',function(){
+                                    var opt = $(this);
+                                    obj.val = opt.text();
+                                    obj.index = opt.index();
+                                    obj.placeholder.text(obj.val);
+                                });
+                            },
+                            getValue : function() {
+                                return this.val;
+                            },
+                            getIndex : function() {
+                                return this.index;
+                            }
+                        }
+
+                        $(function() {
+
+                            var dd = new DropDown( $('#dd') );
+
+                            $(document).click(function() {
+                                // all dropdowns
+                                $('.wrapper-dropdown-3').removeClass('active');
+                            });
+
+                        });
+
+                        function download() {
+                            var holder = document.getElementById("ddspan");
+                            return holder.innerHTML;
+
+                        }
+                    </script>
+
+
+
+                    <!-- ok -->
+
+
+                        <!--<input type="" size="3" class="stretch" />-->
+                        <input type="button" value="DOWNLOAD" onclick="location='/download/'+ download()" />
+{#                        <input type="button" value="DOWNLOAD" onclick="alert('/download/'+ download())" />#}
+
+                    </form>
+
+                </main>
+            </div>
+        </div>
+    </body>
+</html>
